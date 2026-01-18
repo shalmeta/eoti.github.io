@@ -7,10 +7,10 @@
 </head>
 <body>
 <!-- lulz this, clown world -->
-<section id="container" style="width:89vw; height:89vh; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0;">
+<section id="frame" style="width:89vw; height:89vh; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0;">
   <p id="fit" style="margin:0; font-family:'Palatino Linotype','Palatino','Georgia','Times',serif; text-align:center; line-height:1;">
     Story Itself
-  </p>
+  </p><br />
   <p id="fit" style="margin:0; font-family:'Palatino Linotype','Palatino','Georgia','Times',serif; text-align:center; line-height:1;">
     There Exists (∃) No Escape
   </p>
@@ -25,7 +25,7 @@
 <script>
 (function(){
   const p = document.getElementById('fit');
-  const c = document.getElementById('container');
+  const c = document.getElementById('frame');
 
   function fitText() {
     const target = Math.min(c.clientWidth, c.clientHeight) * 0.89;
