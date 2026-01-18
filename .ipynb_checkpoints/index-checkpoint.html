@@ -7,13 +7,14 @@
 :root{
   --font-size:144px;
   --frame-w:89vw;
-  --gap:2vh; /* spacer height (adjust as needed) */
   font-size:var(--font-size);
   --ui-font-family: "Palatino Linotype","Palatino","Georgia","Times",serif;
 }
 
-/* reset */
-html,body{height:100%;margin:0;}
+html,body{
+  height:100%;
+  margin:0;
+}
 
 body{
   display:flex;
@@ -28,41 +29,24 @@ body{
   height:100vh;
   display:flex;
   flex-direction:column;
+  justify-content:space-between; /* evenly distribute vertical space */
   box-sizing:border-box;
-}
-
-/* items share available space */
-.item{
-  flex:1 1 0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:0.5rem;
-  box-sizing:border-box;
-}
-
-/* fixed spacer between items */
-.spacer{
-  height:var(--gap);
-  flex:0 0 auto;
+  padding:4vh 0; /* optional padding so items aren't flush to edges */
 }
 
 /* text styling */
-.item > p{ margin:0; font-size:1rem; line-height:1; text-align:center; }
-.item > p1{ margin:0; font-size:.89rem; line-height:1; text-align:center; }
-.item > p2{ margin:0; font-size:.55rem; line-height:1; text-align:center; }
-.item > p3{ margin:0; font-size:.34rem; line-height:1; text-align:center; }
+.p0{ margin:0; font-size:1rem; text-align:center; }
+.p1{ margin:0; font-size:.89rem; text-align:center; }
+.p2{ margin:0; font-size:.55rem; text-align:center; }
+.p3{ margin:0; font-size:.34rem; text-align:center; }
 </style>
 </head>
 <body>
-  <section class="container" role="region" aria-label="frame">
-    <div class="item"><p>Story Itself</p></div>
-    <div class="spacer" aria-hidden="true"></div>
-    <div class="item"><p1>There Exists (∃)<br />No Escape</p1></div>
-    <div class="spacer" aria-hidden="true"></div>
-    <div class="item"><p2>Not Even Math</p2></div>
-    <div class="spacer" aria-hidden="true"></div>
-    <div class="item"><p3>But That's <a href="https://rearview-mirror-cd5a6e.gitlab.io/projects/mylittletoe/"><em>Just</em></a> The Math</p3></div>
+  <section class="container">
+    <p class="p0">Story Itself</p>
+    <p class="p1">There Exists (∃)<br />No Escape</p>
+    <p class="p2">Not Even Math</p>
+    <p class="p3">But That's <a href="https://rearview-mirror-cd5a6e.gitlab.io/projects/mylittletoe/"><em>Just</em></a> The Math</p>
   </section>
 </body>
 </html>
