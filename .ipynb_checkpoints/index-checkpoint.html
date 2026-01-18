@@ -1,52 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael.Silverton.Palo-Alto.CA.us</title>
-</head>
-<body>
-<!-- lulz this, clown world -->
-<section id="frame" style="width:89vw; height:89vh; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0;">
-  <p id="fit" style="margin:0; font-family:'Palatino Linotype','Palatino','Georgia','Times',serif; text-align:center; line-height:1;">
-    Story Itself
-  </p>
-</section>
-<section id="frame" style="width:55vw; height:55vh; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0;">
-    <p id="fit" style="margin:0; font-family:'Palatino Linotype','Palatino','Georgia','Times',serif; text-align:center; line-height:1;">
-    There Exists (∃) No Escape
-  </p>
-</section>
-<section id="frame" style="width:34vw; height:34vh; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:0;">
-  <p id="fit" style="margin:0; font-family:'Palatino Linotype','Palatino','Georgia','Times',serif; text-align:center; line-height:1;">
-    Not Even Math
-  </p>
-  <p id="fit" style="margin:0; font-family:'Palatino Linotype','Palatino','Georgia','Times',serif; text-align:center; line-height:1;">
-    But That's *Just* The Math
-  </p>
-</section>
-
-<script>
-(function(){
-  const p = document.getElementById('fit');
-  const c = document.getElementById('frame');
-
-  function fitText() {
-    const target = Math.min(c.clientWidth, c.clientHeight) * 0.89;
-    let low = 1, high = 1000;
-    while (low < high - 1) {
-      const mid = Math.floor((low + high) / 2);
-      p.style.fontSize = mid + 'px';
-      const rect = p.getBoundingClientRect();
-      if (rect.width <= target && rect.height <= target) low = mid;
-      else high = mid;
-    }
-    p.style.fontSize = low + 'px';
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+  :root{
+    --frame-w: 89vw;
+    --frame-h: 89vh;
+    --ui-font-family: "Palatino Linotype", "Palatino", "Georgia", "Times", serif;
+    --base-font-size: 144px; /* adjust as needed */
+    --p-height: 25%; /* each <p> is 25% of container height */
   }
 
-  window.addEventListener('resize', fitText);
-  fitText();
-})();
-</script>
+  *{box-sizing:border-box;margin:0;padding:0}
+
+  .frame {
+    width: var(--frame-w);
+    height: var(--frame-h);
+    frame: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+    overflow: hidden;
+    font-family: var(--ui-font-family);
+    font-size: var(--base-font-size);
+    line-height: 1;
+    margin: 0 auto;
+  }
+
+  .slice {
+    height: var(--p-height);       /* 25% of container */
+    min-height: 0;                /* avoid flex overflow issues */
+    frame: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .slice p {
+    margin: 0;
+    line-height: 1;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* If you want wrapping instead, comment the white-space rule above and use: */
+  /* .slice p { white-space: normal; } */
+
+  @media (max-width:600px){
+    :root{ --base-font-size: 16px; }
+  }
+  @media (min-width:1200px){
+    :root{ --base-font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Single frame container sized 89vw x 89vh, with four 25% slices -->
+<section class="frame" role="region" aria-label="frame">
+  <div class="slice"><p>Story Itself</p></div>
+  <div class="slice"><p>There Exists (∃) No Escape</p></div>
+  <div class="slice"><p>Not Even Math</p></div>
+  <div class="slice"><p>But That's *<a href="https://rearview-mirror-cd5a6e.gitlab.io/projects/mylittletoe/">Just</a>* The Math</p></div>
+</section>
+
 </body>
 </html>
