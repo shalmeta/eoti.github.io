@@ -4,71 +4,65 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <style>
-  :root{
-    --frame-w: 89vw;
-    --frame-h: 89vh;
-    --ui-font-family: "Palatino Linotype", "Palatino", "Georgia", "Times", serif;
-    --base-font-size: 144px; /* adjust as needed */
-    --p-height: 25%; /* each <p> is 25% of container height */
-  }
+:root{
+  --font-size:144px;
+  --frame-w:89vw;
+  --gap:2vh; /* spacer height (adjust as needed) */
+  font-size:var(--font-size);
+  --ui-font-family: "Palatino Linotype","Palatino","Georgia","Times",serif;
+}
 
-  *{box-sizing:border-box;margin:0;padding:0}
+/* reset */
+html,body{height:100%;margin:0;}
 
-  .frame {
-    width: var(--frame-w);
-    height: var(--frame-h);
-    frame: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    padding: 0;
-    overflow: hidden;
-    font-family: var(--ui-font-family);
-    font-size: var(--base-font-size);
-    line-height: 1;
-    margin: 0 auto;
-  }
+body{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:var(--ui-font-family);
+}
 
-  .slice {
-    height: var(--p-height);       /* 25% of container */
-    min-height: 0;                /* avoid flex overflow issues */
-    frame: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.25rem;
-    text-align: center;
-    overflow: hidden;
-  }
+/* container fills viewport height and stacks items vertically */
+.container{
+  width:var(--frame-w);
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  box-sizing:border-box;
+}
 
-  .slice p {
-    margin: 0;
-    line-height: 1;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+/* items share available space */
+.item{
+  flex:1 1 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0.5rem;
+  box-sizing:border-box;
+}
 
-  /* If you want wrapping instead, comment the white-space rule above and use: */
-  /* .slice p { white-space: normal; } */
+/* fixed spacer between items */
+.spacer{
+  height:var(--gap);
+  flex:0 0 auto;
+}
 
-  @media (max-width:600px){
-    :root{ --base-font-size: 16px; }
-  }
-  @media (min-width:1200px){
-    :root{ --base-font-size: 22px; }
-  }
+/* text styling */
+.item > p{ margin:0; font-size:1rem; line-height:1; text-align:center; }
+.item > p1{ margin:0; font-size:.89rem; line-height:1; text-align:center; }
+.item > p2{ margin:0; font-size:.55rem; line-height:1; text-align:center; }
+.item > p3{ margin:0; font-size:.34rem; line-height:1; text-align:center; }
 </style>
 </head>
 <body>
-
-<!-- Single frame container sized 89vw x 89vh, with four 25% slices -->
-<section class="frame" role="region" aria-label="frame">
-  <div class="slice"><p>Story Itself</p></div>
-  <div class="slice"><p>There Exists (∃) No Escape</p></div>
-  <div class="slice"><p>Not Even Math</p></div>
-  <div class="slice"><p>But That's *<a href="https://rearview-mirror-cd5a6e.gitlab.io/projects/mylittletoe/">Just</a>* The Math</p></div>
-</section>
-
+  <section class="container" role="region" aria-label="frame">
+    <div class="item"><p>Story Itself</p></div>
+    <div class="spacer" aria-hidden="true"></div>
+    <div class="item"><p1>There Exists (∃) No Escape</p1></div>
+    <div class="spacer" aria-hidden="true"></div>
+    <div class="item"><p2>Not Even Math</p2></div>
+    <div class="spacer" aria-hidden="true"></div>
+    <div class="item"><p3>But That's *<a href="https://rearview-mirror-cd5a6e.gitlab.io/projects/mylittletoe/">Just</a>* The Math</p3></div>
+  </section>
 </body>
 </html>
