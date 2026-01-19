@@ -41,34 +41,36 @@ button{
   cursor:pointer;
 }
 
-/* container fills viewport height and stacks items vertically */
-.container{
-  width:var(--frame-w);
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between; /* evenly distribute vertical space */
-  box-sizing:border-box;
-  padding:4vh 0; /* optional padding so items aren't flush to edges */
-  background:var(--bg);      /* use variable */
-  color:var(--fg);           /* use variable */
-  transition:background .3s, color .3s;
-}
+:root{ --hdr-h: 3.5rem; }
 
 .h-topright{
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 9999;
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent; /* or use var(--card-bg) for visible background */
-  color: var(--fg);
-  backdrop-filter: blur(5px); /* optional */
+  height:var(--hdr-h);
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0 0.75rem;
+  background: transparent;
+  color:var(--fg);
 }
 
+/* reserve the header height so .h-topright does not overlap */
+.container{
+  width:var(--frame-w);
+  height:calc(100vh - var(--hdr-h)); /* reduce container height by header */
+  margin-top:var(--hdr-h);           /* or use padding-top:var(--hdr-h); */
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-sizing:border-box;
+  padding:4vh 0;
+  background:var(--bg);
+  color:var(--fg);
+  transition:background .3s, color .3s;
+}
 /* text styling */
 .p0{ margin:0; font-size:3rem; text-align:center; }
 .p1{ margin:0; font-size:2rem; text-align:center; }
