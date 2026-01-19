@@ -9,6 +9,12 @@
   --frame-w:89vw;
   font-size:var(--font-size);
   --ui-font-family: "Palatino Linotype","Palatino","Georgia","Times",serif;
+  --bg: #111111;
+  --fg: #eeeeee;
+}
+.light{
+    --bg: #eeeeee;
+    --fg: #111111;
 }
 
 html,body{
@@ -21,6 +27,18 @@ body{
   align-items:center;
   justify-content:center;
   font-family:var(--ui-font-family);
+  background:var(--bg);
+  color:var(--fg);
+  transition:background .3s, color .3s;
+}
+
+button{
+  background:transparent;
+  color:var(--fg);
+  border:1px solid currentColor;
+  padding:.5rem 1rem;
+  border-radius:.375rem;
+  cursor:pointer;
 }
 
 /* container fills viewport height and stacks items vertically */
@@ -32,21 +50,53 @@ body{
   justify-content:space-between; /* evenly distribute vertical space */
   box-sizing:border-box;
   padding:4vh 0; /* optional padding so items aren't flush to edges */
+  background:var(--bg);      /* use variable */
+  color:var(--fg);           /* use variable */
+  transition:background .3s, color .3s;
+}
+
+.h-topright{
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent; /* or use var(--card-bg) for visible background */
+  color: var(--fg);
+  backdrop-filter: blur(5px); /* optional */
 }
 
 /* text styling */
-.p0{ margin:0; font-size:3.14rem; text-align:center; }
-.p1{ margin:0; font-size:2.33rem; text-align:center; }
-.p2{ margin:0; font-size:1.44rem; text-align:center; }
+.p0{ margin:0; font-size:3rem; text-align:center; }
+.p1{ margin:0; font-size:2rem; text-align:center; }
+.p2{ margin:0; font-size:1.5rem; text-align:center; }
 .p3{ margin:0; font-size:1rem; text-align:center; }
 </style>
 </head>
 <body>
+<header class="h-topright">
+<button id="togl">🌣 | ☾</button>
+</header>
+<p>&nbsp;</p>
   <section class="container">
     <p class="p0">Story Itself</p>
     <p class="p1">There Exists (∃)<br />No Escape</p>
     <p class="p2">Not Even Math</p>
     <p class="p3">But That's <a href="https://rearview-mirror-cd5a6e.gitlab.io/projects/mylittletoe/"><em>Just</em></a> The Math</p>
   </section>
+
+  <script>
+    const b = document.documentElement; // toggle on <html> so it affects entire page
+    const btn = document.getElementById('togl');
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light') b.classList.add('light');
+    btn.addEventListener('click', () => {
+      const islight = b.classList.toggle('light');
+      localStorage.setItem('theme', islight ? 'light' : 'dark');
+    });
+  </script>
 </body>
 </html>
